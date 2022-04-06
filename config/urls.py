@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from ddungs import views
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register('user', views.UserView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ddungs/', include('ddungs.urls')),
     path('', views.index, name='index'),
+    path('api/', include(router.urls)),
 ]

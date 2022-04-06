@@ -3,6 +3,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import User
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib import messages
+from rest_framework import viewsets
+from .serializers import UserSerializer
+
+class UserView(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
 
 def index(request):
     # sessionUserId = request.session.get('user')
