@@ -4,11 +4,20 @@ from .models import User
 from django.contrib.auth.hashers import make_password, check_password
 from django.contrib import messages
 from rest_framework import viewsets
-from .serializers import UserSerializer
+from .serializers import LoginSerializer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+
 
 class UserView(viewsets.ModelViewSet):
-    serializer_class = UserSerializer
     queryset = User.objects.all()
+    serializer_class = LoginSerializer()
+
+@api_view(['POST'])
+def login_get_api(request):
+    queryset = User.objects.all()
+    serializer_class = LoginSerializer(queryset, many=True)
+    return Response(serializer_class.data)
 
 def index(request):
     # sessionUserId = request.session.get('user')

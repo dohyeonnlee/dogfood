@@ -20,13 +20,17 @@ from rest_framework import routers
 from django.views.generic import TemplateView
 
 router = routers.DefaultRouter()
-router.register('user', views.UserView)
+router.register('users/login', views.UserView)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('ddungs/', include('ddungs.urls')),
+    path('login/', TemplateView.as_view(template_name='index.html')),
+    path('register/', TemplateView.as_view(template_name='index.html')),
+
     # path('', views.index, name='index'),
     # path('api/', include(router.urls)),
+    path('api/users/login/', views.login_get_api),
     path('', TemplateView.as_view(template_name='index.html')),
     # re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]

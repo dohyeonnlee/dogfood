@@ -159,3 +159,8 @@ MESSAGE_TAGS = {
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.request',
 )
+
+APPEND_SLASH = False
+
+# CSRF_COOKIE_NAME = "XSRF-TOKEN"
+# CSRF_HEADER_NAME = 'X-XSRF-TOKEN'
